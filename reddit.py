@@ -19,7 +19,7 @@ with open("datasets/soc-redditHyperlinks-title.tsv") as file:
     for line in tsv_file:
         G.add_node(line[0]) #source subreddit
         G.add_node(line[1]) #dest subreddit
-        G.add_edge(line[0], line[1], weight=line[4]) 
+        G.add_edge(line[0], line[1], weight=line[4])
 
 connected_components = list(nx.strongly_connected_components(G))
 giant_component = max(connected_components, key=len)
