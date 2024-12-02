@@ -42,4 +42,18 @@ plt.figure(figsize=(10, 6))
 plt.barh(property_columns, importance)
 plt.xlabel('Coefficient Value')
 plt.title('Property Importance')
-plt.savefig('post_properties.png')
+plt.savefig('post_properties_results/post_properties_coeff.png')
+
+# Plot the distribution of each property
+fig, axes = plt.subplots(6, 3, figsize=(15, 20))  # Create subplots for 18 properties
+axes = axes.flatten()
+
+for i, prop in enumerate(property_columns):
+    axes[i].hist(df[prop], bins=30, edgecolor='black', alpha=0.7)
+    axes[i].set_title(f'Distribution of {prop}')
+    axes[i].set_xlabel('Value')
+    axes[i].set_ylabel('Frequency')
+
+plt.tight_layout()
+plt.title('Property Importance')
+plt.savefig(f'post_properties_results/{prop}_dist.png')
