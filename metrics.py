@@ -16,7 +16,7 @@ with open("datasets/soc-redditHyperlinks-body.tsv") as file:
         G.add_node(line[1]) #dest subreddit
         G.add_edge(line[0], line[1], weight=line[4]) 
 
-
+'''
 # Metric Analysis on Individal nodes (subreddits)
 
 # Betweenness Centrality
@@ -35,8 +35,8 @@ plt.close()
 # Save 100 largest and smallest betweenness centrality to CSV
 betweenness_df = pd.DataFrame(list(betweenness.items()), columns=['Node', 'Betweenness Centrality'])
 betweenness_df_sorted = betweenness_df.sort_values(by='Betweenness Centrality', ascending=False)
-betweenness_df_sorted.head(100).to_csv('node_metrics_csv/largest_betweenness.csv', index=False)
-betweenness_df_sorted.tail(100).to_csv('node_metrics_csv/smallest_betweenness.csv', index=False)
+betweenness_df_sorted.head(100).to_csv('node_metrics_csvs/largest_betweenness.csv', index=False)
+betweenness_df_sorted.tail(100).to_csv('node_metrics_csvs/smallest_betweenness.csv', index=False)
 
 
 
@@ -56,8 +56,8 @@ plt.close()
 # Save 100 largest and smallest degrees to CSV
 degree_df = pd.DataFrame(list(degree.items()), columns=['Node', 'Degree'])
 degree_df_sorted = degree_df.sort_values(by='Degree', ascending=False)
-degree_df_sorted.head(100).to_csv('node_metrics_csv/largest_degree.csv', index=False)
-degree_df_sorted.tail(100).to_csv('node_metrics_csv/smallest_degree.csv', index=False)
+degree_df_sorted.head(100).to_csv('node_metrics_csvs/largest_degree.csv', index=False)
+degree_df_sorted.tail(100).to_csv('node_metrics_csvs/smallest_degree.csv', index=False)
 
 
 
@@ -77,10 +77,10 @@ plt.close()
 # Save 100 largest and smallest clustering coefficients to CSV
 clustering_df = pd.DataFrame(list(clustering.items()), columns=['Node', 'Clustering Coefficient'])
 clustering_df_sorted = clustering_df.sort_values(by='Clustering Coefficient', ascending=False)
-clustering_df_sorted.head(100).to_csv('node_metrics_csv/largest_clustering_coefficient.csv', index=False)
-clustering_df_sorted.tail(100).to_csv('node_metrics_csv/smallest_clustering_coefficient.csv', index=False)
+clustering_df_sorted.head(100).to_csv('node_metrics_csvs/largest_clustering_coefficient.csv', index=False)
+clustering_df_sorted.tail(100).to_csv('node_metrics_csvs/smallest_clustering_coefficient.csv', index=False)
 
-
+'''
 
 
 # Metric Analysis on communities
@@ -127,14 +127,14 @@ plt.close()
 
 # Get the top and bottom 10 communities by average path length
 sorted_avg_path_lengths = sorted(avg_path_lengths.items(), key=lambda x: x[1], reverse=True)
-top_10_avg_path_lengths = sorted_avg_path_lengths[:10]
-bottom_10_avg_path_lengths = sorted_avg_path_lengths[-10:]
+top_100_avg_path_lengths = sorted_avg_path_lengths[:100]
+#bottom_10_avg_path_lengths = sorted_avg_path_lengths[-10:]
 
 # Save to CSV
-with open('community_metrics_csv/average_path_length.csv', mode='w', newline='') as f:
+with open('community_metrics_csvs/average_path_length.csv', mode='w', newline='') as f:
     writer = csv.writer(f)
     writer.writerow(["Community", "Average Path Length"])
-    for comm, length in top_10_avg_path_lengths + bottom_10_avg_path_lengths:
+    for comm, length in top_100_avg_path_lengths:
         writer.writerow([comm, length])
 
 
@@ -168,14 +168,14 @@ plt.close()
 
 # Get the top and bottom 10 communities by clustering coefficient
 sorted_clustering_coeffs = sorted(clustering_coeffs.items(), key=lambda x: x[1], reverse=True)
-top_10_clustering_coeffs = sorted_clustering_coeffs[:10]
-bottom_10_clustering_coeffs = sorted_clustering_coeffs[-10:]
+top_100_clustering_coeffs = sorted_clustering_coeffs[:100]
+#bottom_10_clustering_coeffs = sorted_clustering_coeffs[-10:]
 
 # Save to CSV
-with open('community_metrics_csv/clustering_coefficient.csv', mode='w', newline='') as f:
+with open('community_metrics_csvs/clustering_coefficient.csv', mode='w', newline='') as f:
     writer = csv.writer(f)
     writer.writerow(["Community", "Clustering Coefficient"])
-    for comm, coeff in top_10_clustering_coeffs + bottom_10_clustering_coeffs:
+    for comm, coeff in top_100_clustering_coeffs:
         writer.writerow([comm, coeff])
 
 
@@ -209,14 +209,14 @@ plt.close()
 
 # Get the top and bottom 10 communities by density
 sorted_densities = sorted(densities.items(), key=lambda x: x[1], reverse=True)
-top_10_densities = sorted_densities[:10]
-bottom_10_densities = sorted_densities[-10:]
+top_100_densities = sorted_densities[:100]
+#bottom_10_densities = sorted_densities[-10:]
 
 # Save to CSV
-with open('community_metrics_csv/density.csv', mode='w', newline='') as f:
+with open('community_metrics_csvs/density.csv', mode='w', newline='') as f:
     writer = csv.writer(f)
     writer.writerow(["Community", "Density"])
-    for comm, density in top_10_densities + bottom_10_densities:
+    for comm, density in top_100_densities:
         writer.writerow([comm, density])
 
 
@@ -250,14 +250,14 @@ plt.close()
 
 # Get the top and bottom 10 communities by average degree
 sorted_avg_degrees = sorted(avg_degrees.items(), key=lambda x: x[1], reverse=True)
-top_10_avg_degrees = sorted_avg_degrees[:10]
-bottom_10_avg_degrees = sorted_avg_degrees[-10:]
+top_100_avg_degrees = sorted_avg_degrees[:100]
+#bottom_10_avg_degrees = sorted_avg_degrees[-10:]
 
 # Save to CSV
-with open('community_metrics_csv/average_degree.csv', mode='w', newline='') as f:
+with open('community_metrics_csvs/average_degree.csv', mode='w', newline='') as f:
     writer = csv.writer(f)
     writer.writerow(["Community", "Average Degree"])
-    for comm, degree in top_10_avg_degrees + bottom_10_avg_degrees:
+    for comm, degree in top_100_avg_degrees:
         writer.writerow([comm, degree])
 
 
@@ -294,14 +294,14 @@ plt.close()
 
 # Get the top and bottom 10 communities by edge connectivity
 sorted_edge_connectivities = sorted(edge_connectivities.items(), key=lambda x: x[1], reverse=True)
-top_10_edge_connectivities = sorted_edge_connectivities[:10]
-bottom_10_edge_connectivities = sorted_edge_connectivities[-10:]
+top_100_edge_connectivities = sorted_edge_connectivities[:100]
+#bottom_10_edge_connectivities = sorted_edge_connectivities[-10:]
 
 # Save to CSV
-with open('community_metrics_csv/edge_connectivity.csv', mode='w', newline='') as f:
+with open('community_metrics_csvs/edge_connectivity.csv', mode='w', newline='') as f:
     writer = csv.writer(f)
     writer.writerow(["Community", "Edge Connectivity"])
-    for comm, conn in top_10_edge_connectivities + bottom_10_edge_connectivities:
+    for comm, conn in top_100_edge_connectivities:
         writer.writerow([comm, conn])
 
 
@@ -338,13 +338,13 @@ plt.close()
 
 # Get the top and bottom 10 communities by node connectivity
 sorted_node_connectivities = sorted(node_connectivities.items(), key=lambda x: x[1], reverse=True)
-top_10_node_connectivities = sorted_node_connectivities[:10]
-bottom_10_node_connectivities = sorted_node_connectivities[-10:]
+top_100_node_connectivities = sorted_node_connectivities[:100]
+#bottom_10_node_connectivities = sorted_node_connectivities[-10:]
 
 # Save to CSV
-with open('community_metrics_csv/node_connectivity.csv', mode='w', newline='') as f:
+with open('community_metrics_csvs/node_connectivity.csv', mode='w', newline='') as f:
     writer = csv.writer(f)
     writer.writerow(["Community", "Node Connectivity"])
-    for comm, conn in top_10_node_connectivities + bottom_10_node_connectivities:
+    for comm, conn in top_100_node_connectivities:
         writer.writerow([comm, conn])
 
