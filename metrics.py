@@ -120,8 +120,8 @@ avg_path_lengths = average_path_length_per_community(G, node_community)
 plt.figure()
 plt.hist(list(avg_path_lengths.values()), bins=30, edgecolor='black')
 plt.title('Average Path Length per Community')
-plt.xlabel('Community')
-plt.ylabel('Average Path Length')
+plt.xlabel('Average Path Length')
+plt.ylabel('# of Communities with Average Path Length')
 plt.savefig('histograms/community_average_path_length_histogram.png')
 plt.close()
 
@@ -161,11 +161,11 @@ clustering_coeffs = clustering_coefficient_per_community(G, node_community)
 plt.figure()
 plt.hist(list(clustering_coeffs.values()), bins=30, edgecolor='black')
 plt.title('Clustering Coefficient per Community')
-plt.xlabel('Community')
-plt.ylabel('Clustering Coefficient')
+plt.xlabel('Clustering Coefficient')
+plt.ylabel('# of Communities with Clustering Coefficient')
 plt.savefig('histograms/community_clustering_coefficient_histogram.png')
 plt.close()
-
+'''
 # Get the top and bottom 10 communities by clustering coefficient
 sorted_clustering_coeffs = sorted(clustering_coeffs.items(), key=lambda x: x[1], reverse=True)
 top_100_clustering_coeffs = sorted_clustering_coeffs[:100]
@@ -176,7 +176,7 @@ with open('community_metrics_csvs/clustering_coefficient.csv', mode='w', newline
     writer = csv.writer(f)
     writer.writerow(["Community", "Clustering Coefficient"])
     for comm, coeff in top_100_clustering_coeffs:
-        writer.writerow([comm, coeff])
+        writer.writerow([comm, coeff])'''
 
 
 
@@ -202,11 +202,11 @@ densities = density_per_community(G, node_community)
 plt.figure()
 plt.hist(list(densities.values()), bins=30, edgecolor='black')
 plt.title('Density per Community')
-plt.xlabel('Community')
-plt.ylabel('Density')
+plt.xlabel('Density')
+plt.ylabel('# of Communities with Density')
 plt.savefig('histograms/community_density_histogram.png')
 plt.close()
-
+'''
 # Get the top and bottom 10 communities by density
 sorted_densities = sorted(densities.items(), key=lambda x: x[1], reverse=True)
 top_100_densities = sorted_densities[:100]
@@ -217,7 +217,7 @@ with open('community_metrics_csvs/density.csv', mode='w', newline='') as f:
     writer = csv.writer(f)
     writer.writerow(["Community", "Density"])
     for comm, density in top_100_densities:
-        writer.writerow([comm, density])
+        writer.writerow([comm, density])'''
 
 
 
@@ -243,11 +243,11 @@ avg_degrees = average_degree_per_community(G, node_community)
 plt.figure()
 plt.hist(list(avg_degrees.values()), bins=30, edgecolor='black')
 plt.title('Average Degree per Community')
-plt.xlabel('Community')
-plt.ylabel('Average Degree')
+plt.xlabel('Average Degree')
+plt.ylabel('# of Communities with Average Degree')
 plt.savefig('histograms/community_average_degree_histogram.png')
 plt.close()
-
+'''
 # Get the top and bottom 10 communities by average degree
 sorted_avg_degrees = sorted(avg_degrees.items(), key=lambda x: x[1], reverse=True)
 top_100_avg_degrees = sorted_avg_degrees[:100]
@@ -258,7 +258,7 @@ with open('community_metrics_csvs/average_degree.csv', mode='w', newline='') as 
     writer = csv.writer(f)
     writer.writerow(["Community", "Average Degree"])
     for comm, degree in top_100_avg_degrees:
-        writer.writerow([comm, degree])
+        writer.writerow([comm, degree])'''
 
 
 
@@ -287,11 +287,11 @@ edge_connectivities = edge_connectivity_per_community(G, node_community)
 plt.figure()
 plt.hist(list(edge_connectivities.values()), bins=30, edgecolor='black')
 plt.title('Edge Connectivity per Community')
-plt.xlabel('Community')
-plt.ylabel('Edge Connectivity')
+plt.xlabel('Edge Connectivity')
+plt.ylabel('# of Communities with Edge Connectivity')
 plt.savefig('histograms/community_edge_connectivity_histogram.png')
 plt.close()
-
+'''
 # Get the top and bottom 10 communities by edge connectivity
 sorted_edge_connectivities = sorted(edge_connectivities.items(), key=lambda x: x[1], reverse=True)
 top_100_edge_connectivities = sorted_edge_connectivities[:100]
@@ -302,7 +302,7 @@ with open('community_metrics_csvs/edge_connectivity.csv', mode='w', newline='') 
     writer = csv.writer(f)
     writer.writerow(["Community", "Edge Connectivity"])
     for comm, conn in top_100_edge_connectivities:
-        writer.writerow([comm, conn])
+        writer.writerow([comm, conn])'''
 
 
 
@@ -331,11 +331,11 @@ node_connectivities = node_connectivity_per_community(G, node_community)
 plt.figure()
 plt.hist(list(node_connectivities.values()), bins=30, edgecolor='black')
 plt.title('Node Connectivity per Community')
-plt.xlabel('Community')
-plt.ylabel('Node Connectivity')
+plt.xlabel('Node Connectivity')
+plt.ylabel('# of Communities with Node Connectivity')
 plt.savefig('histograms/node_connectivity_histogram.png')
 plt.close()
-
+'''
 # Get the top and bottom 10 communities by node connectivity
 sorted_node_connectivities = sorted(node_connectivities.items(), key=lambda x: x[1], reverse=True)
 top_100_node_connectivities = sorted_node_connectivities[:100]
@@ -346,5 +346,5 @@ with open('community_metrics_csvs/node_connectivity.csv', mode='w', newline='') 
     writer = csv.writer(f)
     writer.writerow(["Community", "Node Connectivity"])
     for comm, conn in top_100_node_connectivities:
-        writer.writerow([comm, conn])
+        writer.writerow([comm, conn])'''
 
