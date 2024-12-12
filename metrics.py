@@ -17,15 +17,16 @@ with open("datasets/soc-redditHyperlinks-body.tsv") as file:
         G.add_node(line[1]) #dest subreddit
         G.add_edge(line[0], line[1], weight=line[4]) 
 
-'''
+
 # Metric Analysis on Individal nodes (subreddits)
 
 # Betweenness Centrality
 betweenness = nx.betweenness_centrality(G, normalized=True, endpoints=False)
+betweenness = {key: value for key, value in betweenness.items() if value != 0.0} #remove anything with a centrality of 0
 
 # Betweenness Centrality Histogram
 plt.figure(figsize=(10, 6))
-sns.histplot(list(betweenness.values()), kde=False, bins=30)
+sns.histplot(list(betweenness.values()), kde=False, bins=100)
 plt.title('Betweenness Centrality Histogram')
 plt.xlabel('Betweenness Centrality')
 plt.ylabel('Frequency')
@@ -43,10 +44,11 @@ betweenness_df_sorted.tail(100).to_csv('node_metrics_csvs/smallest_betweenness.c
 
 # Degree Centrality
 degree = dict(G.degree())  # In-degree + Out-degree
+degree = {key: value for key, value in degree.items() if value != 1} #remove anything with a degree of 1
 
 # Degree Histogram
 plt.figure(figsize=(10, 6))
-sns.histplot(list(degree.values()), kde=False, bins=30)
+sns.histplot(list(degree.values()), kde=False, bins=100)
 plt.title('Degree Histogram')
 plt.xlabel('Degree')
 plt.ylabel('Frequency')
@@ -60,6 +62,7 @@ degree_df_sorted = degree_df.sort_values(by='Degree', ascending=False)
 degree_df_sorted.head(100).to_csv('node_metrics_csvs/largest_degree.csv', index=False)
 degree_df_sorted.tail(100).to_csv('node_metrics_csvs/smallest_degree.csv', index=False)
 
+'''
 
 
 # Clustering Coefficient
@@ -81,7 +84,6 @@ clustering_df_sorted = clustering_df.sort_values(by='Clustering Coefficient', as
 clustering_df_sorted.head(100).to_csv('node_metrics_csvs/largest_clustering_coefficient.csv', index=False)
 clustering_df_sorted.tail(100).to_csv('node_metrics_csvs/smallest_clustering_coefficient.csv', index=False)
 
-'''
 
 # Harmonic Centrality
 harmonics = harmonic_centrality(G)
@@ -123,7 +125,7 @@ pagerank_df_sorted.head(100).to_csv('node_metrics_csvs/largest_pagerank.csv', in
 pagerank_df_sorted.tail(100).to_csv('node_metrics_csvs/smallest_pagerank.csv', index=False)
 
 
-'''
+
 
 # Metric Analysis on communities
 
@@ -389,5 +391,4 @@ with open('community_metrics_csvs/node_connectivity.csv', mode='w', newline='') 
     writer.writerow(["Community", "Node Connectivity"])
     for comm, conn in top_100_node_connectivities:
         writer.writerow([comm, conn])
-
 '''
