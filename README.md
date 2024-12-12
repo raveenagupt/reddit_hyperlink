@@ -5,16 +5,21 @@ Purpose: Research shows that subreddits influence each other's popularity throug
 
 Run "pip install requirements.txt" to install all necessary python libraries
 
+**some things were removed for gradescope submission because it wouldn't accept this much
+
 Python files:
 - community_clusters.py: maps communities
 - detect_community.py: performs a community detection algorithm and creates a CSV with communities
 - ExpectedIncrease.py: runs an algorithm to find how much of an influence getting hyperlinked by a hub can affect a niche subreddit
 - find_high_comm.py: goes through the community_metrics CSVs and prints which communities appear at the top of the most metrics
+- HighestDegrees.py: generates degree over time for some highest rank subreddits
 - influential_nodes.py: takes in the resulting CSV of detect_community.py and extracts the top nodes of each community
 - metrics.py: finds the top and bottom 10 nodes/commmunities for each metric then makes a histogram for each metric
+- MiddleDegree.py: generates degree over time for some middle rank subreddits
 - out_communities_nodes.py: display the nodes with the highest out edges to different communities 
 - post_properties.py: performs logistic regression to determine which post properties have the most influence on a post being popular
 - reddit.py: finds metrics like giant component and average degree of the graphs as a whole and makes degree distribution plots
+- Sentiment.py: graphs top 100 subreddit sentiment ratios
 - SI_giant_component: removes giant component for SI.py
 - SI.py: treats the network like an epidemic and uses and SI model to determine spread of information (v1)
 - SIModel.py: treats the network like an epidemic and uses and SI model to determine spread of information (v2)
