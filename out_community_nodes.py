@@ -1,14 +1,14 @@
 import pandas as pd
 from collections import defaultdict
 
-# Step 1: Load community assignments
+# Load community assignments
 community_assignments = pd.read_csv("community_assignments.csv", header=None, names=["node", "community"])
 node_to_community = dict(zip(community_assignments["node"], community_assignments["community"]))
 
-# Step 2: Load graph edges
+# Load graph edges
 graph_edges = pd.read_csv("graph_edges.csv", header=None, names=["source", "target"])
 
-# Step 3: Calculate bridges and degrees
+# Calculate bridges and degrees
 bridge_degrees = defaultdict(int)
 
 for _, row in graph_edges.iterrows():
@@ -21,7 +21,7 @@ for _, row in graph_edges.iterrows():
         bridge_degrees[source] += 1
         bridge_degrees[target] += 1
 
-# Step 4: Sort nodes by degree
+# Sort nodes by degree
 sorted_bridges = sorted(bridge_degrees.items(), key=lambda x: x[1], reverse=True)
 
 # Display top bridges

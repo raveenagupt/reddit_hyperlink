@@ -26,7 +26,7 @@ betweenness = {key: value for key, value in betweenness.items() if value != 0.0}
 
 # Betweenness Centrality Histogram
 plt.figure(figsize=(10, 6))
-sns.histplot(list(betweenness.values()), kde=False, bins=100)
+sns.histplot(list(betweenness.values()), kde=False, bins=200)
 plt.title('Betweenness Centrality Histogram')
 plt.xlabel('Betweenness Centrality')
 plt.ylabel('Frequency')
@@ -48,6 +48,7 @@ degree = {key: value for key, value in degree.items() if value != 1} #remove any
 
 # Degree Histogram
 plt.figure(figsize=(10, 6))
+plt.xlim(xmin=8, xmax = 800)
 sns.histplot(list(degree.values()), kde=False, bins=100)
 plt.title('Degree Histogram')
 plt.xlabel('Degree')
